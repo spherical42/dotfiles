@@ -20,7 +20,7 @@
 #: <https://sw.kovidgoyal.net/kitty/kittens/choose-fonts/#font-spec-
 #: syntax>.
 
-font_size 12
+# font_size 11.0
 
 #: Font size (in pts).
 
@@ -2649,6 +2649,6 @@ dynamic_background_opacity true
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# Espresso
 include current-theme.conf
 # END_KITTY_THEME
