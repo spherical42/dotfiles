@@ -9,9 +9,10 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
-local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+--local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
---local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
+local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
+local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 -- Theme handling library
 local beautiful = require("beautiful")
@@ -163,24 +164,24 @@ local tasklist_buttons = gears.table.join(
         awful.client.focus.byidx(-1)
     end))
 
-local function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end
+--local function set_wallpaper(s)
+-- Wallpaper
+--    if beautiful.wallpaper then
+--        local wallpaper = beautiful.wallpaper
+--        -- If wallpaper is a function, call it with the screen
+--        if type(wallpaper) == "function" then
+--            wallpaper = wallpaper(s)
+--        end
+--        gears.wallpaper.maximized(wallpaper, s, true)
+--    end
+--end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
+--screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
-    set_wallpaper(s)
+    --set_wallpaper(s)
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
@@ -224,13 +225,13 @@ awful.screen.connect_for_each_screen(function(s)
         {             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            ram_widget(),
+            --ram_widget(),
             cpu_widget(),
             batteryarc_widget({
                 show_current_level = true,
                 arc_thickness = 1,
             }),
-            --todo_widget(),
+            todo_widget(),
             mytextclock,
             logout_menu_widget {
                 onpoweroff = function() awful.spawn.with_shell("echo \"Ja123.12\" | sudo -S -k shutdown -p now") end
