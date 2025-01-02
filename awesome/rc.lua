@@ -233,9 +233,7 @@ awful.screen.connect_for_each_screen(function(s)
             }),
             todo_widget(),
             mytextclock,
-            logout_menu_widget {
-                onpoweroff = function() awful.spawn.with_shell("echo \"Ja123.12\" | sudo -S -k shutdown -p now") end
-            },
+            logout_menu_widget(),
             --s.mylayoutbox,
         },
     }
